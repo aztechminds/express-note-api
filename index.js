@@ -1,18 +1,15 @@
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
 const port = 8080;
-
-app.use(bodyParser.json());
 
 // Array für die Notizen
 let notes = [
-  {id: 1, note: "My new Note", autor: "Max Mustermann", date: "2025-01-15"},
-  {id: 2, note: "My new Note", autor: "Max Mustermann", date: "2025-01-15"},
-  {id: 3, note: "My new Note", autor: "Max Mustermann", date: "2025-01-15"},
-  {id: 4, note: "My new Note", autor: "Max Mustermann", date: "2025-01-15"},
-  {id: 5, note: "My new Note", autor: "Max Mustermann", date: "2025-01-15"},
-  {id: 6, note: "My new Note", autor: "Max Mustermann", date: "2025-01-15"},  
+  { id: 1, note: "My new Note", autor: "Max Mustermann", date: "2025-01-15" },
+  { id: 2, note: "My new Note", autor: "Max Mustermann", date: "2025-01-15" },
+  { id: 3, note: "My new Note", autor: "Max Mustermann", date: "2025-01-15" },
+  { id: 4, note: "My new Note", autor: "Max Mustermann", date: "2025-01-15" },
+  { id: 5, note: "My new Note", autor: "Max Mustermann", date: "2025-01-15" },
+  { id: 6, note: "My new Note", autor: "Max Mustermann", date: "2025-01-15" },
 ];
 
 let nextId = 1; // ID-Generator
@@ -29,7 +26,6 @@ app.listen(port, () => {
 // GET /notes - Alle Notizen abrufen
 app.get("/notes", (req, res) => {
   res.json(notes);
-  console.log(notes);
 });
 
 // GET /notes/:id - Notiz nach ID abrufen
@@ -44,13 +40,9 @@ app.get("/notes/:id", (req, res) => {
 
 // POST /notes - Neue Notiz erstellen
 app.post("/notes", (req, res) => {
-  const { note, autor, date } = req.body;
-  if (!note || !autor || !date) {
-    return res.status(400).send({ error: "Invalid note format" });
-  }
-  const newNote = { id: nextId++, note, autor, date };
-  notes.push(newNote);
-  res.status(201).json(newNote);
+  let note = req.body;
+  notes.push(notes);
+ res.send("Note added successfully");
 });
 
 // PUT /notes/:id - Notiz aktualisieren
